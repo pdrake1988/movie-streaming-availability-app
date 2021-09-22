@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import MovieTag from "./components/MovieTag/MovieTag";
+import Offcanvas from "./components/MovieTag/Offcanvas/Offcanvas";
 
 interface Movie {
     id: number,
@@ -26,16 +27,17 @@ function App() {
     },[movies]);
     return (
         <div className={'container'}>
-            <div className={'row'}>
-                {movies.map((movie: Movie) => {
-                    return (
-                        <MovieTag key={movie.id}
-                                  poster={movie.poster_path}
-                                  title={movie.title}
-                        />
-                    )
-                })}
-            </div>
+            <Offcanvas/>
+                <div className={'row'}>
+                    {movies.map((movie: Movie) => {
+                        return (
+                            <MovieTag key={movie.id}
+                                      poster={movie.poster_path}
+                                      title={movie.title}
+                            />
+                        )
+                    })}
+                </div>
         </div>
     );
 }
