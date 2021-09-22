@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import MovieTag from "./components/MovieTag/MovieTag";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface Movie {
+    id: number,
+    poster_path: string,
+    title: number
 }
 
+function App() {
+    const [movies, setMovies] = useState([]);
+    function GetMovies(genreId = 0, sortBy = "popularity.desc", page = 1){
+        const baseUrl = "https://api.themoviedb.org/3/discover/movie?api_key=e2e4f004450c3b2d09d61c0fb5120d06" +
+            "&language=en-US&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&sort_by=" + sortBy + "&page=" + page;
+        if(genreId === 0 && sortBy === "popularity.desc" && page === 1) {
+            fetch(baseUrl).then(response => {
+                return response.json();
+            }).then(data => {
+                setMovies(data.results);
+            });
+        }
+    }
+    useEffect(() => {
+        GetMovies();
+    },[movies]);
+    return (
+        <div className={'container'}>
+            <div className={'row'}>
+                {movies.map((movie: Movie) => {
+                    return (
+                        <MovieTag key={movie.id}
+                                  poster={movie.poster_path}
+                                  title={movie.title}
+                        />
+                    )
+                })}
+            </div>
+        </div>
+    );
+}
 export default App;

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="CPanel Main">
+      <paths name="CPanel Movie Streaming Availability App">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
