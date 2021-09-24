@@ -6,7 +6,7 @@ function Sidebar(props: any) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
-        <React.Fragment>
+        <div className={'col-3'}>
             <Button variant={'secondary'} onClick={handleShow}>Filter</Button>
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header>
@@ -14,11 +14,12 @@ function Sidebar(props: any) {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <DropdownButton title={'Genre'} drop={'end'}>
-                        <Dropdown.Item eventKey={1}><button onClick={() => props.filterByGenre(28)}>Action</button></Dropdown.Item>
+                        <Dropdown.Item as={'button'} onClick={() => props.filterByGenre(0)}>Default</Dropdown.Item>
+                        <Dropdown.Item as={'button'} onClick={() => props.filterByGenre(28)}>Action</Dropdown.Item>
                     </DropdownButton>
                 </Offcanvas.Body>
             </Offcanvas>
-        </React.Fragment>
+        </div>
     )
 }
 export default Sidebar
