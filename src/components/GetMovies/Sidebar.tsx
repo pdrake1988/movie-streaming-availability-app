@@ -95,7 +95,7 @@ function Sidebar(props: any) {
                         {props.monetization === "flatrate" && <h3>Flat Rate</h3>}
                         {props.monetization === "ads" && <h3>Ads</h3>}
                         {props.monetization === "free" && <h3>Free</h3>}
-                        <DropdownButton title={'Monetization Type'}>
+                        <DropdownButton title={'Monetization Type'} drop={'end'}>
                             <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("buy")}>Buy</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("rent")}>Rent</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("flatrate")}>Flat Rate</Dropdown.Item>
