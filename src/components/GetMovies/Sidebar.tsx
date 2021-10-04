@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {Button, Dropdown, DropdownButton, Offcanvas} from "react-bootstrap";
+import {Button, CloseButton, Dropdown, DropdownButton, Offcanvas} from "react-bootstrap";
 
 function Sidebar(props: any) {
     const [show, setShow] = useState(false);
@@ -11,6 +11,7 @@ function Sidebar(props: any) {
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header>
                     <Offcanvas.Title>Filter</Offcanvas.Title>
+                    <CloseButton onClick={handleClose}/>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className={'p-2'}>
@@ -89,19 +90,8 @@ function Sidebar(props: any) {
                             <Dropdown.Item as={'button'} onClick={() => props.sortBy("vote_count.asc")}>Vote Count Ascending</Dropdown.Item>
                         </DropdownButton>
                     </div>
-                    <div className={'p-3'}>
-                        {props.monetization === "buy" && <h3>Buy</h3>}
-                        {props.monetization === "rent" && <h3>Rent</h3>}
-                        {props.monetization === "flatrate" && <h3>Flat Rate</h3>}
-                        {props.monetization === "ads" && <h3>Ads</h3>}
-                        {props.monetization === "free" && <h3>Free</h3>}
-                        <DropdownButton title={'Monetization Type'} drop={'end'}>
-                            <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("buy")}>Buy</Dropdown.Item>
-                            <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("rent")}>Rent</Dropdown.Item>
-                            <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("flatrate")}>Flat Rate</Dropdown.Item>
-                            <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("ads")}>Ads</Dropdown.Item>
-                            <Dropdown.Item as={'button'} onClick={() => props.filterMonetization("free")}>Free</Dropdown.Item>
-                        </DropdownButton>
+                    <div className={'p-2'}>
+
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>

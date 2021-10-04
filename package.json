@@ -1,5 +1,6 @@
 {
   "name": "movie-streaming-availability-app",
+  "homepage": "https://moviestreamingavailabilityapp.pdrake.me",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
