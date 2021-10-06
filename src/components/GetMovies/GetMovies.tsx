@@ -64,7 +64,6 @@ export default function GetMovies() {
                 <PageSort page={page}
                           totalPages={totalPages}
                           pagination={(pageNum: number) => {
-                              if(page - pageNum ===  )
                               setPage(pageNum);
                           }}
                 />
