@@ -4,10 +4,10 @@ import MoviePage from "./components/MoviePage/MoviePage";
 
 export default function App() {
     return (
-        <BrowserRouter basename={'/MovieStreamingAvailabilityApp'}>
+        <BrowserRouter>
             <Switch>
                 <Route path={'/MoviePage/:movieId'} component={MoviePage}/>
-                <Route path={'/'}>
+                <Route path={['/:genre', '/:sortBy', '/:page', '/']}>
                     <GetMovies/>
                 </Route>
             </Switch>

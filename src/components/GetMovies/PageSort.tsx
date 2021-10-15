@@ -1,48 +1,24 @@
 import React from "react";
-import {Button, Dropdown, DropdownButton} from "react-bootstrap";
+import {Pagination} from "react-bootstrap";
 import logo from '../files/img.png';
-import DropdownItem from "react-bootstrap/DropdownItem";
+import ReactPaginate from 'react-paginate'
+interface PageSort {
+    pageNum: number;
+    total_pages: number;
+    pagination(pageNum: number): void;
+}
 
-function PageSort(props: any) {
+function PageSort(props: PageSort) {
     return (
         <React.Fragment>
-            <div className={'col-2'}>
-                <Button variant={'primary'} onClick={() => props.pagination(props.page - 1)}>Previous</Button>
-            </div>
-            <div className={'col-2'}>
-                <DropdownButton title={'Page Sort'} variant={'success'} drop={'up'}>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 2)}>Page -2</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 3)}>Page -3</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 4)}>Page -4</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 5)}>Page -5</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 6)}>Page -6</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 7)}>Page -7</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 8)}>Page -8</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 9)}>Page -9</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page - 10)}>Page -10</Dropdown.Item>
-                </DropdownButton>
-            </div>
-            <div className={'col-3'}>
-                <h3>{props.page}</h3>
-            </div>
-            <div className={'col-2'}>
-                <DropdownButton title={'Backwards'} variant={'success'} drop={'up'}>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 2)}>Page +2</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 3)}>Page +3</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 4)}>Page +4</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 5)}>Page +5</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 6)}>Page +6</Dropdown.Item>
-                    <Dropdown.Item onClick={()=> props.pagination(props.page + 7)}>Page +7</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 8)}>Page +8</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 9)}>Page +9</Dropdown.Item>
-                    <Dropdown.Item onClick={() => props.pagination(props.page + 10)}>Page +10</Dropdown.Item>
-                </DropdownButton>
-            </div>
-            <div className={'col-2'}>
-                <Button variant={'primary'} onClick={() => props.pagination(props.page + 1)}>Next</Button>
+            <div className={'col-12'}>
+                <ReactPaginate initialPage={props.pageNum} pageCount={props.total_pages} pageRangeDisplayed={10} marginPagesDisplayed={2} onPageChange={({selected}) => props.pagination(selected + 1)}
+                    containerClassName='pagination' pageClassName='page-item' pageLinkClassName='page-link' previousClassName={'page-item'} previousLinkClassName={'page-link'}
+                    nextClassName={'page-item'} nextLinkClassName={'page-link'} activeClassName={'active'}
+                />
             </div>
             <div className={'col-12'}>
-                <img className={'img-fluid'} src={logo} alt={'The Movie Db logo'}/>
+                <img className={'img-fluid'} src={logo} alt={"The MovieDb Logo"}/>
             </div>
         </React.Fragment>
     )

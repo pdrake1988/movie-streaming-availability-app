@@ -2,69 +2,61 @@ import React, {useEffect, useState} from 'react';
 import Sidebar from "./Sidebar"
 import PageSort from "./PageSort"
 import MovieTag from './MovieTag';
+import Movie from "./Movie";
+import {useParams, useHistory} from "react-router-dom";
 
-interface Movie {
-    id: number,
-    poster_path: string,
-    title: number
+interface GetMoviesParams {
+    genre: string;
+    sort: string;
+    page: string;
 }
-
 export default function GetMovies() {
     const [movies, setMovies] = useState([]);
-    const [genre, setGenre] = useState(0);
-    const [sort, setSort] = useState("popularity.desc");
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState();
-    function LoadMovies(genreId: number, sortBy: string, page: number){
-        setGenre(genreId);
-        setSort(sortBy);
-        setPage(page);
+    let {genre = '0'} = useParams<GetMoviesParams>();
+    let {sort = 'popularity.desc'} = useParams<GetMoviesParams>();
+    let {page = '1'} = useParams<GetMoviesParams>();
+    let history = useHistory();
+    const [totalPages, setTotalPages] = useState(0);
+    function loadMovies(genreId: string, sortBy: string, pageNum: string) {
         const baseUrl = "https://api.themoviedb.org/3/discover/movie?api_key=e2e4f004450c3b2d09d61c0fb5120d06" +
             "&language=en-US&include_adult=false&include_video=true&sort_by=";
-        if(genreId === 0) {
-            fetch(baseUrl + sortBy + "&page=" + page).then(response => {
-                return response.json();
-            }).then(data => {
-                setMovies(data.results);
-                setTotalPages(data.total_pages);
-            });
-        } else {
-            fetch(baseUrl + sortBy + "&with_genres="  + genreId + "&page=" + page).then(response => {
-                return response.json();
-            }).then(data => {
-                setMovies(data.results);
-                setTotalPages(data.total_pages);
-            });
+        if(genreId === '0') {
+            fetch(baseUrl + sortBy + "&page=" + pageNum)
+                .then(response => response.json())
+                .then(data => {
+                    setMovies(data.results);
+                    setTotalPages(data.total_pages);
+                });
         }
     }
     useEffect(() => {
-        LoadMovies(genre, sort, page);
+        loadMovies(genre, sort, page);
     }, [genre, page, totalPages, sort, movies]);
     return (
         <div className={'container'}>
             <div className={'row'}>
                 <Sidebar genre={genre} sort={sort}
-                         filterByGenre={(genre: number) => {
-                             setGenre(genre);
-                         }}
-                         sortBy={(sort: string) => {
-                             setSort(sort);
-                         }}
+                     filterByGenre={(genreNum: string) => {
+                         history.push('genre', `/${genreNum}`)
+                     }}
+                     sortBy={(sortBy: string) => {
+                         history.push('sortBy', `/${sortBy}`);
+                     }}
                 />
                 <h1 className={'col-9'}>Movie Streaming Availability App</h1>
-                {movies.map((movie: Movie, index) => {
+                {movies.map((movie: Movie, index: number) => {
                     return (
                         <MovieTag key={index}
                                   movieId={movie.id}
                                   poster={movie.poster_path}
-                                  title={movie.title}
+                                  title={movie.original_title}
                         />
                     )
                 })}
-                <PageSort page={page}
-                          totalPages={totalPages}
+                <PageSort pageNum={parseInt(page)}
+                          total_pages={totalPages}
                           pagination={(pageNum: number) => {
-                              setPage(pageNum);
+                              history.push('page', `/${pageNum}`);
                           }}
                 />
             </div>
