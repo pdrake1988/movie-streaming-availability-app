@@ -27,6 +27,13 @@ export default function GetMovies() {
                     setMovies(data.results);
                     setTotalPages(data.total_pages);
                 });
+        } else {
+            fetch(baseUrl + sortBy + "&with_genres=" + genreId + "&page=" + pageNum)
+                .then(response => response.json())
+                .then(data => {
+                    setMovies(data.results);
+                    setTotalPages(data.total_pages);
+                });
         }
     }
     useEffect(() => {
@@ -56,7 +63,7 @@ export default function GetMovies() {
                 <PageSort pageNum={parseInt(page)}
                           total_pages={totalPages}
                           pagination={(pageNum: number) => {
-                              history.push('page', `/${pageNum}`);
+                              history.push(`/${pageNum}`);
                           }}
                 />
             </div>

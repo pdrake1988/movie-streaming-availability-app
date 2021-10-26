@@ -1,14 +1,14 @@
 import React from "react";
-import {Pagination} from "react-bootstrap";
 import logo from '../files/img.png';
 import ReactPaginate from 'react-paginate'
-interface PageSort {
+
+interface PageParams{
     pageNum: number;
     total_pages: number;
     pagination(pageNum: number): void;
 }
 
-function PageSort(props: PageSort) {
+function PageSort(props: PageParams) {
     return (
         <React.Fragment>
             <div className={'col-12'}>
