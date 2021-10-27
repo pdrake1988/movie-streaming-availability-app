@@ -1,10 +1,10 @@
 import React from "react";
 import {useEffect, useState} from "react";
-import FilmData from "./FilmData";
-import Genres from "./Genres";
-import ProductionCompanies from "./ProductionCompanies";
-import ProductionCountries from "./ProductionCountries";
-import SpokenLanguages from "./SpokenLanguages";
+import FilmData from "./movie_page_interfaces/FilmData";
+import Genres from "./movie_page_interfaces/Genres";
+import ProductionCompanies from "./movie_page_interfaces/ProductionCompanies";
+import ProductionCountries from "./movie_page_interfaces/ProductionCountries";
+import SpokenLanguages from "./movie_page_interfaces/SpokenLanguages";
 
 export default function MoviePage(props: any) {
     const [movie, setMovie] = useState<FilmData>();
@@ -22,30 +22,26 @@ export default function MoviePage(props: any) {
     return(
         <div className={'container-fluid'}>
             <div className={'row'}>
-                <div className={'col-5'}>
+                <div className={'col-4'}>
                     <img className={'img-fluid'} src={'https://image.tmdb.org/t/p/w780' + movie?.backdrop_path} alt={'Movie Backdrop'}/>
                 </div>
-                <div className={'col-7'}>
-                    <h3>{movie?.original_title}</h3>
-                </div>
                 <div className={'col-4'}>
+                    <h3>{movie?.original_title}</h3>
                     <h3>Release Date {movie?.release_date}</h3>
                     <h3>Status {movie?.status}</h3>
                 </div>
-                <div className={'col-5'}>
+                <div className={'col-4'}>
                     <a href={movie?.homepage}>Movie Homepage</a>
                     <p>{movie?.overview}</p>
-                </div>
-                <div className={'col-3'}>
-                    <h3>Movie Genres</h3>
-                    {movie?.genres.map((genre: Genres) => {
+                    <h3>Movie Genre</h3>
+                    {movie?.genres.map((genre: Genres, index: number) => {
                         return(
-                            <h3>{genre.name}</h3>
+                            <p key={index}>{genre.name}</p>
                         )
                     })}
                 </div>
-                <div className={'col-4'}>
-                    <h3>Production Companies</h3>
+                <div className={'col-2'}>
+                    <h4>Production Companies</h4>
                     {movie?.production_companies.map((company: ProductionCompanies, index) => {
                         return(
                             <React.Fragment key={index}>
@@ -55,22 +51,19 @@ export default function MoviePage(props: any) {
                         )
                     })}
                 </div>
-                <div className={'col-4'}>
-                    <h3>Production Countries</h3>
-                    {movie?.production_countries.map((country: ProductionCountries) => {
+                <div className={'col-2'}>
+                    <h4>Production Countries</h4>
+                    {movie?.production_countries.map((country: ProductionCountries, index: number) => {
                         return (
-                            <h3>{country.name}</h3>
+                            <p key={index}>{country.name}</p>
                         )
                     })}
                 </div>
-                <div className={'col-4'}>
-                    <h3>Spoken Languages</h3>
-                    {movie?.spoken_languages.map((language: SpokenLanguages) => {
+                <div className={'col-2'}>
+                    <h4>Spoken Languages</h4>
+                    {movie?.spoken_languages.map((language: SpokenLanguages, index) => {
                         return(
-                            <React.Fragment>
-                                <h3>{language.english_name}</h3>
-                                <h3>{language.name}</h3>
-                            </React.Fragment>
+                                <p key={index}>{language.english_name}</p>
                         )
                     })}
                 </div>

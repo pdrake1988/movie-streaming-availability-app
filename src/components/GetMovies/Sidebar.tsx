@@ -1,7 +1,17 @@
 import React, {useState} from "react"
 import {Button, CloseButton, Dropdown, DropdownButton, Offcanvas} from "react-bootstrap";
+import DropdownItem from "react-bootstrap/DropdownItem";
 
-function Sidebar(props: any) {
+interface SidebarProps {
+    genre: string;
+    sort: string;
+    monetization: string;
+    filterByGenre(genreNum: string): void;
+    sortBy(sortBy: string): void;
+    filterByMonetization(monetizationType: string): void;
+}
+
+function Sidebar(props: SidebarProps) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -88,6 +98,21 @@ function Sidebar(props: any) {
                             <Dropdown.Item as={'button'} onClick={() => props.sortBy("vote_average.asc")}>Vote Average Ascending</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.sortBy("vote_count.desc")}>Vote Count Descending</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.sortBy("vote_count.asc")}>Vote Count Ascending</Dropdown.Item>
+                        </DropdownButton>
+                    </div>
+                    <div className={'p-2'}>
+                        {props.monetization === "default" && <h3>Default</h3>}
+                        {props.monetization === "flatrate" && <h3>Flatrate</h3>}
+                        {props.monetization === "free" && <h3>Free</h3>}
+                        {props.monetization === "ads" && <h3>Ads</h3>}
+                        {props.monetization === "rent" && <h3>Rent</h3>}
+                        {props.monetization === "buy" && <h3>Buy</h3>}
+                        <DropdownButton title={'Monetization Type'}>
+                            <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("flatrate")}>Flatrate</Dropdown.Item>
+                            <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("free")}>Free</Dropdown.Item>
+                            <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("ads")}>Ads</Dropdown.Item>
+                            <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("rent")}>Rent</Dropdown.Item>
+                            <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("buy")}>Buy</Dropdown.Item>
                         </DropdownButton>
                     </div>
                 </Offcanvas.Body>

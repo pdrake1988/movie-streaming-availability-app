@@ -7,7 +7,7 @@ export default function App() {
         <BrowserRouter>
             <Switch>
                 <Route path={'/MoviePage/:movieId'} component={MoviePage}/>
-                <Route path={['/:page', '/']}>
+                <Route path={['/:genre/:monetization/:sort/:page', '/']}>
                     <GetMovies/>
                 </Route>
             </Switch>
