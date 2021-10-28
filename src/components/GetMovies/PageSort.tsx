@@ -12,7 +12,7 @@ function PageSort(props: PageParams) {
     console.log(props.pageNum)
     return (
         <React.Fragment>
-            <div className={'col-12 d-none d-lg-block justify-content-center'}>
+            <div className={'col-12 d-none d-lg-block'}>
                 <ReactPaginate initialPage={props.pageNum - 1} pageCount={props.total_pages} pageRangeDisplayed={19} marginPagesDisplayed={2} onPageChange={({selected}) => props.pagination(selected + 1)}
                                containerClassName='pagination' pageClassName='page-item' pageLinkClassName='page-link' previousClassName={'page-item'} previousLinkClassName={'page-link'}
                                nextClassName={'page-item'} nextLinkClassName={'page-link'} activeClassName={'active'}

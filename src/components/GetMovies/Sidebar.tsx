@@ -1,6 +1,5 @@
 import React, {useState} from "react"
 import {Button, CloseButton, Dropdown, DropdownButton, Offcanvas} from "react-bootstrap";
-import DropdownItem from "react-bootstrap/DropdownItem";
 
 interface SidebarProps {
     genre: string;
@@ -107,7 +106,7 @@ function Sidebar(props: SidebarProps) {
                         {props.monetization === "ads" && <h3>Ads</h3>}
                         {props.monetization === "rent" && <h3>Rent</h3>}
                         {props.monetization === "buy" && <h3>Buy</h3>}
-                        <DropdownButton title={'Monetization Type'}>
+                        <DropdownButton title={'Monetization Type'} drop={'end'}>
                             <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("flatrate")}>Flatrate</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("free")}>Free</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("ads")}>Ads</Dropdown.Item>
