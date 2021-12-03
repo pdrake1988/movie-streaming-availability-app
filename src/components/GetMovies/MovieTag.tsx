@@ -10,7 +10,7 @@ function MovieTag(props: any) {
             <Link to={`/MoviePage/${props.movieId}`}><img className={'d-none d-lg-block d-xl-none img-fluid'} src={'https://image.tmdb.org/t/p/w185' + props.poster} alt={props.title}/></Link>
             <Link to={`/MoviePage/${props.movieId}`}><img className={'d-md-block d-lg-none img-fluid'} src={'https://image.tmdb.org/t/p/w154' + props.poster} alt={props.title}/></Link>
             <Link to={`/MoviePage/${props.movieId}`}><img className={'d-none d-sm-block d-md-none img-fluid'} src={'https://image.org/t/p/w92' + props.poster} alt={props.title}/></Link>
-            <p>{props.title}</p>
+            <h4 className={'text-center'}>{props.title}</h4>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import PageSort from "./PageSort"
 import MovieTag from './MovieTag';
 import Movie from "./Movie";
 import {useParams, useHistory} from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 interface GetMoviesParams {
     genre: string;
@@ -12,6 +13,7 @@ interface GetMoviesParams {
     monetization: string;
 }
 export default function GetMovies() {
+    document.body.classList.add('bg-dark', 'text-white');
     const [movies, setMovies] = useState([]);
     let {genre = '0'} = useParams<GetMoviesParams>();
     let {sort = 'popularity.desc'} = useParams<GetMoviesParams>();
@@ -70,10 +72,15 @@ export default function GetMovies() {
                          history.push(`/${genre}/${monetizationType}/${sort}/${page}`)
                      }}
                      sortBy={(sortBy: string) => {
-                         history.push(`${genre}/${monetization}/${sortBy}/${page}`);
+                         history.push(`/${genre}/${monetization}/${sortBy}/${page}`);
                      }}
                 />
-                <h1 className={'col-9'}>Movie Streaming Availability App</h1>
+                <div className={'col-6'}>
+                    <h2 className={'text-center'}>Movie Streaming Availability App</h2>
+                </div>
+                <div className={'col-3 text-end'}>
+                    <Button variant={'secondary'} href={'https://www.pdrake.me'}>Home Page</Button>
+                </div>
                 {movies.map((movie: Movie, index: number) => {
                     return (
                         <MovieTag key={index}
@@ -86,7 +93,7 @@ export default function GetMovies() {
                 <PageSort pageNum={parseInt(page)}
                           total_pages={totalPages}
                           pagination={(pageNum: number) => {
-                              history.push(`/${genre}/${sort}/${pageNum}`);
+                              history.push(`/${genre}/${monetization}/${sort}/${pageNum}`);
                           }}
                 />
             </div>

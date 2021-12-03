@@ -1,5 +1,6 @@
 import React, {useState} from "react"
-import {Button, CloseButton, Dropdown, DropdownButton, Offcanvas} from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
+import {Button, CloseButton, DropdownButton, Offcanvas} from "react-bootstrap";
 
 interface SidebarProps {
     genre: string;
@@ -22,7 +23,7 @@ function Sidebar(props: SidebarProps) {
                     <Offcanvas.Title>Filter</Offcanvas.Title>
                     <CloseButton onClick={handleClose}/>
                 </Offcanvas.Header>
-                <Offcanvas.Body>
+                <Offcanvas.Body className={'bg-dark'}>
                     <div className={'p-2'}>
                         {props.genre === '0' && <h3>Default</h3>}
                         {props.genre === '28' && <h3>Action</h3>}
@@ -107,6 +108,7 @@ function Sidebar(props: SidebarProps) {
                         {props.monetization === "rent" && <h3>Rent</h3>}
                         {props.monetization === "buy" && <h3>Buy</h3>}
                         <DropdownButton title={'Monetization Type'} drop={'end'}>
+                            <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("default")}>Default</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("flatrate")}>Flatrate</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("free")}>Free</Dropdown.Item>
                             <Dropdown.Item as={'button'} onClick={() => props.filterByMonetization("ads")}>Ads</Dropdown.Item>

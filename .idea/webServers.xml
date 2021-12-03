@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="94ac2c59-6790-4f6d-b887-ca1e235d89b7" name="CPanel Movie Streaming Availability App" url="http://pdrake.me">
-        <fileTransfer rootFolder="/home/qygc6483amgl" accessType="SFTP" host="72.167.127.57" port="22" sshConfigId="19fe7284-1317-4221-8c4e-e7187de31eb1" sshConfig="qygc6483amgl@72.167.127.57:22 password">
+      <webServer id="9d2705e1-29c0-4346-ad98-f68e9a5c16f6" name="Home">
+        <fileTransfer rootFolder="/home/euspigz3af7d" accessType="SFTP" host="68.178.244.59" port="22" sshConfigId="a2f911c7-f7d2-404d-a989-11204337e0f2" sshConfig="Home Page">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
