@@ -59,71 +59,81 @@ export default function MoviePage(props: any) {
                     <a className={'text-primary align-content-center'} href={provider?.link}>The Moviedb movie page</a>
                 </div>
                 <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-sm-none d-md-block'}>Flatrate</h1>
-                    <h3 className={'text-center d-sm-block d-md-none'}>Flatrate</h3>
+                    <h1 className={'text-center d-none d-lg-block'}>Flatrate</h1>
+                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Flatrate</h3>
+                    <h6 className={'text-center d-sm-block d-md-none'}>Flatrate</h6>
                     {provider?.flatrate !== undefined && provider?.flatrate.map((company: Providers, index: number) => {
                         return(
                             <React.Fragment key={index}>
                                 <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
                                 <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h3 className={'d-none d-sm-none d-md-block text-center'}>{company.provider_name}</h3>
-                                <h6 className={'d-sm-block d-md-none text-center'}>{company.provider_name}</h6>
+                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
+                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
+                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
                             </React.Fragment>
                         )
                     })}
                 </div>
                 <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-sm-none d-md-block'}>Buy</h1>
-                    <h3 className={'text-center d-sm-block d-md-none'}>Buy</h3>
+                    <h1 className={'text-center d-none d-lg-block'}>Buy</h1>
+                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Buy</h3>
+                    <h6 className={'text-center d-sm-block d-md-none'}>Buy</h6>
                     {provider?.buy !== undefined && provider?.buy.map((company: Providers, index: number) => {
                         return(
                             <React.Fragment key={index}>
                                 <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
                                 <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h3 className={'d-none d-sm-none d-md-block text-center'}>{company.provider_name}</h3>
-                                <h6 className={'d-sm-block d-md-none text-center'}>{company.provider_name}</h6>
+                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
+                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
+                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
                             </React.Fragment>
                         )
                     })}
                 </div>
                 <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-sm-none d-md-block'}>For Rent</h1>
-                    <h3 className={'text-center d-sm-block d-md-none'}>For Rent</h3>
+                    <h1 className={'text-center d-none d-lg-block'}>For Rent</h1>
+                    <h3 className={'text-center d-none d-md-block d-lg-none'}>For Rent</h3>
+                    <h6 className={'text-center d-sm-block d-md-none'}>For Rent</h6>
                     {provider?.rent !== undefined && provider?.rent.map((company: Providers, index: number) => {
                         return(
                             <React.Fragment key={index}>
                                 <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
                                 <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h3 className={'d-none d-sm-none d-md-block text-center'}>{company.provider_name}</h3>
-                                <h6 className={'d-sm-block d-md-none text-center'}>{company.provider_name}</h6>
+                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
+                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
+                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
                             </React.Fragment>
                         )
                     })}
                 </div>
                 <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-sm-none d-md-block'}>Free with Ads</h1>
-                    <h3 className={'text-center d-sm-block d-md-none'}>Free with Ads</h3>
+                    <h1 className={'text-center d-none d-lg-block'}>Free with Ads</h1>
+                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Free with Ads</h3>
+                    <h6 className={'text-center d-sm-block d-md-none'}>Free with Ads</h6>
                     {provider?.ads !== undefined && provider?.ads.map((company: Providers, index: number) => {
                         return(
                             <React.Fragment key={index}>
                                 <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
                                 <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h3 className={'d-sm-none d-md-block text-center'}>{company.provider_name}</h3>
-                                <h6 className={'d-none d-sm-block d-md-none text-center'}>{company.provider_name}</h6>
+                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
+                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
+                                <h6 className={'text-center d-none d-sm-block'}>{company.provider_name}</h6>
                             </React.Fragment>
                         )
                     })}
                 </div>
                 <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-sm-none d-md-block'}>Free</h1>
-                    <h3 className={'text-center d-sm-block d-md-none'}>Free</h3>
+                    <h1 className={'text-center d-none d-lg-block'}>Free</h1>
+                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Free</h3>
+                    <h6 className={'text-center d-sm-block d-md-none'}>Free</h6>
                     {provider?.free !== undefined && provider?.free.map((company: Providers, index: number) => {
                         return(
                             <React.Fragment key={index}>
                                 <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
                                 <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h3 className={'d-none d-sm-none d-md-block text-center'}>{company.provider_name}</h3>
-                                <h6 className={'d-sm-block d-md-none text-center'}>{company.provider_name}</h6>
+                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
+                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
+                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
                             </React.Fragment>
                         )
                     })}
