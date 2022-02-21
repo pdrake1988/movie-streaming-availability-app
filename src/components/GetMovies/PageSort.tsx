@@ -9,7 +9,6 @@ interface PageParams{
 }
 
 function PageSort(props: PageParams) {
-    console.log(props.pageNum)
     return (
         <React.Fragment>
             <div className={'col-12 d-none d-lg-block'}>

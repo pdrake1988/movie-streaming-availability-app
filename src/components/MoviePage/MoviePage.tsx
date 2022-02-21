@@ -1,172 +1,61 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import FilmData from "./movie_page_interfaces/FilmData";
-import Genres from "./movie_page_interfaces/Genres";
-import ProductionCompanies from "./movie_page_interfaces/ProductionCompanies";
-import ProductionCountries from "./movie_page_interfaces/ProductionCountries";
-import SpokenLanguages from "./movie_page_interfaces/SpokenLanguages";
-import Providers from "./movie_page_interfaces/Providers";
+import axios from "axios";
+import {useParams} from "react-router-dom";
+import MovieParams from "./movie_page_interfaces/MovieParams";
 import Monetization from "./movie_page_interfaces/Monetization";
+import Languages from "./Footer/Languages";
+import Countries from "./Footer/Countries";
+import Companies from "./Footer/Companies";
+import Free from "./Providers/Free";
+import FreeWithAds from "./Providers/FreeWithAds";
+import Rent from "./Providers/Rent";
+import Buy from "./Providers/Buy";
+import FlatRate from "./Providers/FlatRate";
+import ProviderLink from "./Providers/ProviderLink";
+import ProviderHeader from "./Providers/ProviderHeader";
+import MovieInfo from "./Header/MovieInfo";
+import MovieTitle from "./Header/MovieTitle";
+import Backdrop from "./Header/Backdrop";
 
-export default function MoviePage(props: any) {
+
+export default function MoviePage() {
     document.body.classList.add('bg-dark', 'text-white', 'fw-bold');
+    let { movieId } = useParams<MovieParams>()
     const [movie, setMovie] = useState<FilmData>();
     const [provider, setProvider] = useState<Monetization>();
-    function MovieData(movieId: number) {
-        const movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=e2e4f004450c3b2d09d61c0fb5120d06&language=en-US";
-        fetch(movieUrl).then((response) =>{
-           return response.json();
-        }).then((data) => {
-            setMovie(data);
-        });
-    }
-    function providerData(providerId: number) {
-        let providerUrl = "https://api.themoviedb.org/3/movie/" + providerId + "/watch/providers?api_key=e2e4f004450c3b2d09d61c0fb5120d06&language=en-us";
-        fetch(providerUrl)
-            .then(response => response.json())
-            .then(data => setProvider(data.results.US));
-    }
     useEffect(() => {
-        MovieData(props.match.params.movieId);
-        providerData(props.match.params.movieId);
-    },[props.match.params.movieId]);
-    return(
-        <div className={'container-fluid'}>
-            <div className={'row'}>
-                <div className={'col-4'}>
-                    <img className={'img-fluid'} src={'https://image.tmdb.org/t/p/w780' + movie?.backdrop_path} alt={'Movie Backdrop'}/>
-                </div>
-                <div className={'col-4'}>
-                    <h3>{movie?.original_title}</h3>
-                    <h3>Release Date {movie?.release_date}</h3>
-                    <h3>Status {movie?.status}</h3>
-                </div>
-                <div className={'col-4'}>
-                    <a href={movie?.homepage}>Movie Homepage</a>
-                    <p>{movie?.overview}</p>
-                    <h3>Movie Genre</h3>
-                    {movie?.genres.map((genre: Genres, index: number) => {
-                        return(
-                            <p key={index}>{genre.name}</p>
-                        )
-                    })}
-                </div>
-                <div className={'col-12'}>
-                    <h1 className={'text-center'}>Where to watch</h1>
-                    <p className={'text-center'}>Data source Just Watch</p>
-                </div>
-                <div className={'col-2'}>
-                    <a className={'text-primary align-content-center'} href={provider?.link}>The Moviedb movie page</a>
-                </div>
-                <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-lg-block'}>Flatrate</h1>
-                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Flatrate</h3>
-                    <h6 className={'text-center d-sm-block d-md-none'}>Flatrate</h6>
-                    {provider?.flatrate !== undefined && provider?.flatrate.map((company: Providers, index: number) => {
-                        return(
-                            <React.Fragment key={index}>
-                                <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
-                                <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
-                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
-                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
-                            </React.Fragment>
-                        )
-                    })}
-                </div>
-                <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-lg-block'}>Buy</h1>
-                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Buy</h3>
-                    <h6 className={'text-center d-sm-block d-md-none'}>Buy</h6>
-                    {provider?.buy !== undefined && provider?.buy.map((company: Providers, index: number) => {
-                        return(
-                            <React.Fragment key={index}>
-                                <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
-                                <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
-                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
-                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
-                            </React.Fragment>
-                        )
-                    })}
-                </div>
-                <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-lg-block'}>For Rent</h1>
-                    <h3 className={'text-center d-none d-md-block d-lg-none'}>For Rent</h3>
-                    <h6 className={'text-center d-sm-block d-md-none'}>For Rent</h6>
-                    {provider?.rent !== undefined && provider?.rent.map((company: Providers, index: number) => {
-                        return(
-                            <React.Fragment key={index}>
-                                <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
-                                <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
-                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
-                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
-                            </React.Fragment>
-                        )
-                    })}
-                </div>
-                <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-lg-block'}>Free with Ads</h1>
-                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Free with Ads</h3>
-                    <h6 className={'text-center d-sm-block d-md-none'}>Free with Ads</h6>
-                    {provider?.ads !== undefined && provider?.ads.map((company: Providers, index: number) => {
-                        return(
-                            <React.Fragment key={index}>
-                                <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
-                                <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
-                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
-                                <h6 className={'text-center d-none d-sm-block'}>{company.provider_name}</h6>
-                            </React.Fragment>
-                        )
-                    })}
-                </div>
-                <div className={'col-2'}>
-                    <h1 className={'text-center d-none d-lg-block'}>Free</h1>
-                    <h3 className={'text-center d-none d-md-block d-lg-none'}>Free</h3>
-                    <h6 className={'text-center d-sm-block d-md-none'}>Free</h6>
-                    {provider?.free !== undefined && provider?.free.map((company: Providers, index: number) => {
-                        return(
-                            <React.Fragment key={index}>
-                                <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
-                                <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <h1 className={'text-center d-none d-lg-block'}>{company.provider_name}</h1>
-                                <h3 className={'text-center d-none d-md-block d-lg-none'}>{company.provider_name}</h3>
-                                <h6 className={'text-center d-sm-block d-md-none'}>{company.provider_name}</h6>
-                            </React.Fragment>
-                        )
-                    })}
-                </div>
-                <div className={'col-4'}>
-                    <h4 className={'text-center'}>Production Companies</h4>
-                    {movie?.production_companies.map((company: ProductionCompanies, index) => {
-                        return(
-                            <div key={index}>
-                                <img className={'img-fluid d-none d-md-block mx-auto'} src={'https://image.tmdb.org/t/p/w92' + company.logo_path} alt={'Company Logo'}/>
-                                <img className={'img-fluid d-sm-block d-md-none mx-auto'} src={'https://image.tmdb.org/t/p/w45' + company.logo_path} alt={'Company Logo'}/>
-                                <p className={'text-center'}>{company.name}</p>
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className={'col-4'}>
-                    <h4 className={'text-center'}>Production Countries</h4>
-                    {movie?.production_countries.map((country: ProductionCountries, index: number) => {
-                        return (
-                            <p className={'text-center'} key={index}>{country.name}</p>
-                        )
-                    })}
-                </div>
-                <div className={'col-4'}>
-                    <h4 className={'text-center'}>Spoken Languages</h4>
-                    {movie?.spoken_languages.map((language: SpokenLanguages, index) => {
-                        return(
-                                <p className={'text-center'} key={index}>{language.english_name}</p>
-                        )
-                    })}
-                </div>
+        axios.get("https://api.themoviedb.org/3/movie/" + movieId +
+            "/watch/providers?api_key=e2e4f004450c3b2d09d61c0fb5120d06").then(res => setProvider(res.data));
+        axios.get("https://api.themoviedb.org/3/movie/" + movieId +
+            "?api_key=e2e4f004450c3b2d09d61c0fb5120d06&language=en-US").then(res => setMovie(res.data));
+    });
+    return (
+        <React.Fragment>
+            <div className={'d-flex flex-row flex-nowrap'}>
+                <Backdrop BackDropPath={movie?.backdrop_path}/>
+                <MovieTitle OriginalTitle={movie?.original_title}
+                            ReleaseDate={movie?.release_date}
+                            Status={movie?.status}/>
+                <MovieInfo HomePage={movie?.homepage}
+                           Overview={movie?.overview}
+                           Genre={movie?.genres}/>
             </div>
-        </div>
+                <ProviderHeader/>
+                <div className={'d-flex flex-row flex-nowrap'}>
+                    <ProviderLink Provider={provider?.results.link}/>
+                    <FlatRate Providers={provider?.results.US.flatrate}/>
+                    <Buy Provider={provider?.results.US.buy}/>
+                    <Rent Provider={provider?.results.US.rent}/>
+                    <FreeWithAds Provider={provider?.results.US.ads}/>
+                    <Free Provider={provider?.results.US.free}/>
+                </div>
+                <div className={'d-flex flex-row flex-nowrap'}>
+                    <Companies companies={movie?.production_companies}/>
+                    <Countries countries={movie?.production_countries}/>
+                    <Languages languages={movie?.spoken_languages}/>
+                </div>
+        </React.Fragment>
     )
 }
