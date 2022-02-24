@@ -17,7 +17,6 @@ import ProviderHeader from "./Providers/ProviderHeader";
 import MovieInfo from "./Header/MovieInfo";
 import MovieTitle from "./Header/MovieTitle";
 import Backdrop from "./Header/Backdrop";
-import VideosTag from "./Footer/VideosTag";
 
 interface MovieParams {
     movieId: string;
@@ -28,14 +27,14 @@ export default function MoviePage() {
     let { movieId } = useParams<MovieParams>()
     const [movie, setMovie] = useState<FilmData>();
     const [provider, setProvider] = useState<Monetization>();
-    const [videos, setVideos] = useState({results: []});
+    // const [videos, setVideos] = useState({results: []});
     useEffect(() => {
         axios.get("https://api.themoviedb.org/3/movie/" + movieId +
             "/watch/providers?api_key=e2e4f004450c3b2d09d61c0fb5120d06").then(res => setProvider(res.data));
         axios.get("https://api.themoviedb.org/3/movie/" + movieId +
             "?api_key=e2e4f004450c3b2d09d61c0fb5120d06&language=en-US").then(res => setMovie(res.data));
-        axios.get("https://api.themoviedb.org/3/movie/" + movieId +
-            "/videos?api_key=e2e4f004450c3b2d09d61c0fb5120d06&language=en-US").then(res => setVideos(res.data));
+        // axios.get("https://api.themoviedb.org/3/movie/" + movieId +
+        //     "/videos?api_key=e2e4f004450c3b2d09d61c0fb5120d06&language=en-US").then(res => setVideos(res.data));
     });
     return (
         <React.Fragment>
