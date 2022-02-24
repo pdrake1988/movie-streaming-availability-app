@@ -2,15 +2,19 @@ import React from "react";
 
 interface MovieTitleProps {
     OriginalTitle: string | undefined;
-    ReleaseDate: Date | undefined;
+    ReleaseDate: string | undefined;
     Status: string | undefined;
 }
 export default function MovieTitle(props: MovieTitleProps) {
+    const releaseDate = props.ReleaseDate !== undefined ?
+        new Date(props.ReleaseDate) : props.ReleaseDate;
     return (
-        <div className={'mx-auto'}>
-            <h3>{props.OriginalTitle}</h3>
-            <h3>Release Date {props.ReleaseDate}</h3>
-            <h3>Status {props.Status}</h3>
+        <div className={'col-4'}>
+            <h3 className={'text-center'}>{props.OriginalTitle}</h3>
+            <h3 className={'text-center'}>Release Date {releaseDate?.toLocaleDateString('en-US', {
+                weekday: 'long', month: '2-digit', day: '2-digit', year: 'numeric'
+            })}</h3>
+            <h3 className={'text-center'}>Status {props.Status}</h3>
         </div>
     )
 }

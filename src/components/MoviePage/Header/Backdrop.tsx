@@ -5,8 +5,8 @@ interface BackdropProps {
 }
 export default function Backdrop(props: BackdropProps) {
     return (
-        <div>
-            <img className={'img-fluid mx-auto'} src={'https://image.tmdb.org/t/p/w780' +
+        <div className={'col-4'}>
+            <img className={'img-fluid'} src={'https://image.tmdb.org/t/p/w780' +
                 props.BackDropPath} alt={'Movie Backdrop'}/>
         </div>
     )

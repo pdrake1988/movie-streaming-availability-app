@@ -9,7 +9,7 @@ export default interface FilmData {
     overview: string;
     production_companies: [];
     production_countries: [];
-    release_date: Date;
+    release_date: string;
     status: string;
     spoken_languages: SpokenLanguages[];
     vote_average: number;

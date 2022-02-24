@@ -8,7 +8,7 @@ interface MovieInfoProps {
 }
 export default function MovieInfo(props: MovieInfoProps) {
     return (
-        <div className={'mx-auto'}>
+        <div className={'col-4'}>
             <a href={props.HomePage}>Movie Homepage</a>
             <p>{props.Overview}</p>
             <h3>Movie Genres</h3>

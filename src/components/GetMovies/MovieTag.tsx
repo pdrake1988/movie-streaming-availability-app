@@ -1,8 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+interface MovieTagProps {
+    key: number;
+    movieId: number;
+    poster: number;
+    title: string;
+}
 
-function MovieTag(props: any) {
+function MovieTag(props: MovieTagProps) {
     return (
         <div className={'col-3'}>
             <Link to={`/MoviePage/${props.movieId}`}><img className={'d-none d-xxl-block img-fluid'} src={'https://image.tmdb.org/t/p/w500' + props.poster} alt={props.title}/></Link>

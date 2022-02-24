@@ -23,7 +23,7 @@ export default function GetMovies() {
     useEffect(() => {
         axios.get("https://api.themoviedb.org/3/discover/movie?" +
             "api_key=e2e4f004450c3b2d09d61c0fb5120d06&language=en-US&include_adult=false&" +
-            "include_video=false1&watch_region=US", {
+            "include_video=true&watch_region=US", {
             params: {
                 sort_by: sort,
                 with_genres: genre,
