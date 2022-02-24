@@ -63,7 +63,7 @@ export default function MoviePage() {
                 <Companies companies={movie?.production_companies}/>
                 <Countries countries={movie?.production_countries}/>
                 <Languages languages={movie?.spoken_languages}/>
-                <VideosTag videos={videos.results}/>
+                {/*<VideosTag videos={videos.results}/>*/}
             </div>
         </React.Fragment>
     )

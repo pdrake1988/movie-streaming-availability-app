@@ -12,7 +12,7 @@ export default function VideosTag(props: VideoTagProps) {
                             key={index}
                             title={video.name}
                             src={`https://www.youtube.com/embed/${video.key}`}
-                            allow={"fullscreen"}
+                            allow={'fullscreen'}
                             />
                 )
             })}
